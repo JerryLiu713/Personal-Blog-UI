@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>Input </title>
+    <title>Input</title>
 
     <meta name="viewpoint" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/lib/editor/css/editormd.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
 
@@ -15,7 +16,7 @@
     <nav class="ui inverted attached segment m-padded-tb-mini" >
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
-                <h2 class="ui teal header item">Server Side Admin</h2>
+                <h2 class="ui teal header item">Blog Information Page</h2>
                 <a href="#" class="item"><i class="home icon"></i>First page</a>
                 <a href="#" class="item"><i class="idea icon"></i>Categories</a>
                 <a href="#" class="item"><i class="tags icon"></i>Label</a>
@@ -67,9 +68,24 @@
                     </div>
 
                 </div>
+
                 <div class="filed">
-                    <textarea placeholder="Blog contents" name="content"></textarea>
+                    <div id="md-content" style="z-index: 1" !important>
+                        <textarea placeholder="Blog contents" name="content" style="display: none">
+                            [TOC]
+
+#### Disabled options
+
+- TeX (Based on KaTeX);
+- Emoji;
+- Task lists;
+- HTML tags decode;
+- Flowchart and Sequence Diagram;
+                        </textarea>
+                    </div>
+
                 </div>
+
                 <div class="two fields">
                     <div class="field">
                         <div class="ui left labeled action input">
@@ -179,7 +195,19 @@
     </footer>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../static/lib/editor/editormd.min.js"></script>
             <script>
+                //初始化Markdown
+                var contentEditor;
+                $(function() {
+                    testEditor = editormd("md-content", {
+                        width   : "100%",
+                        height  : 640,
+                        syncScrolling : "single",
+                        path    : "../static/lib/editor/lib/"
+                    });
+                });
+
                 $('.ui.dropdown').dropdown();
             </script>
 </body>
